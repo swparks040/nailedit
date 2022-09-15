@@ -9,7 +9,7 @@ export const AppointmentForm = () => {
             userId: 0,
             nailColorId: 0,
             nailShapeId: 0,
-            nailEffectsId: 0,
+            nailEffectId: 0,
             directions: "",
             dateBooked: ""
     })
@@ -30,12 +30,12 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                userId: nailedItUserObject.id,
                nailColorId: appointment.nailColorId,
                nailShapeId: appointment.nailShapeId,
-               nailEffectsId: appointment.nailEffectsId,
-               directions: "",
-               dateBooked: ""
+               nailEffectId: appointment.nailEffectId,
+               directions: appointment.directions,
+               dateBooked: appointment.dateBooked
            }
 
-//      post to API with fetch POST.
+//      post to API with fetch POST, stringify with .stringify(appointmentObject) in the body, then navigate to appointments.
         return fetch(`http://localhost:8088/appointments`, {
             method: "POST",
             headers: {
@@ -86,7 +86,7 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                 <div className="form-group">
                     <label htmlFor="name">Nail Effects</label>
                     <input type="checkbox"
-                        value={appointment.nailEffectsId}
+                        value={appointment.nailEffectId}
                         onChange={
                             (evt) => {
                                 const copy = {...appointment}
@@ -99,7 +99,7 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="directions">Directions/Notes</label>
+                    <label htmlFor="directions">Directions</label>
                     <input
                         required autoFocus
                         type="text"
@@ -118,13 +118,19 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
             <fieldset>
                 <div className="form-group">
                  <label htmlFor="dates">Date:</label> 
-                 <input
-                    required autoFocus
+                 <input                   
                     type="date"
                     className="form-control"
+                    required pattern="\d{4}-\d{2}-\d{2}"
                     value={appointment.dateBooked}
-                    min="2020-01-01"
+                    min="2022-01-21"
                     max="2030-01-01"
+                    onChange={
+                        (evt) => {
+                            const copy = {...appointment}
+                            copy.dateBooked = evt.target.value
+                            update(copy)
+                        }}
                     />
                 </div>
             </fieldset>

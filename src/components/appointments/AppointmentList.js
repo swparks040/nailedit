@@ -3,7 +3,7 @@
 1. Create AppointmentList function to be used/rendered in ApplicationViews.js*/
 
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const AppointmentList = () => {
     const [appointments, setAppointments] = useState([])
@@ -46,7 +46,8 @@ export const AppointmentList = () => {
                 ? <>
                 
                 </>
-                : <button onClick={() => navigate("/appointment/create")}>Make Appointment</button>
+                : <><button onClick={() => navigate("/appointment/create")}>Make Appointment</button></>
+                
         }
     
 
@@ -60,12 +61,15 @@ export const AppointmentList = () => {
                 filteredAppointments.map(
                     (appointment) => {
                         return <section className="appointment">
-                            <header>{appointment.userId}</header>
+                            <header>
+                                <Link to={`/appointments/${appointment.id}/edit`}>Appointment {appointment.id}</Link>
+                            </header>
                             <div>Colors: {appointment.nailColorId}</div>
                             <div>Shapes: {appointment.nailShapeId}</div>
                             <div>Effects: {appointment.nailEffectId}</div>
                             <div>Directions: {appointment.directions}</div>
-                            <div>Date: {appointment.dateCompleted}</div>
+                            <div>Date: {appointment.dateBooked}</div>
+                            <button onClick={() => navigate("/appointment/:appointmentId/edit")}>Edit Appointment</button>
                         </section>
                     }
                 )

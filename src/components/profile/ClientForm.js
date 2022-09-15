@@ -12,9 +12,10 @@ export const ClientForm = () => {
       const nailedItUserObject = JSON.parse(localNailedItUser);
       const [feedback, setFeedback] = useState("")
 
+// This provides a three second message letting the user know whether or not the profile for the user was saved successfully. Appears top middle of browser. 
+
       useEffect(() => {
         if (feedback !== "") {
-            // Clear feedback to make entire element disappear after 3 seconds
             setTimeout(() => setFeedback(""), 3000);
         }
     }, [feedback])
@@ -71,17 +72,17 @@ export const ClientForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <label htmlFor="phoneNumber">Phone Number:</label>
+              <label htmlFor="phone">Phone Number:</label>
               <input
                 required
                 autoFocus
                 type="text"
                 placeholder="###-###-####"
                 className="form-control"
-                value={profile.phoneNumber}
+                value={profile.phone}
                 onChange={(evt) => {
                   const copy = { ...profile };
-                  copy.phoneNumber = evt.target.value;
+                  copy.phone = evt.target.value;
                   updateProfile(copy);
                 }}
               />

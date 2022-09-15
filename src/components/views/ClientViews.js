@@ -1,6 +1,8 @@
 import { Outlet, Route, Routes } from "react-router-dom"
+import { AppointmentEdit } from "../appointments/AppointmentEdit"
 import { AppointmentForm } from "../appointments/AppointmentForm"
 import { AppointmentList } from "../appointments/AppointmentList"
+import { Profile } from "../profile/Profile"
 
 export const ClientViews = () => {
 	return (
@@ -15,7 +17,9 @@ export const ClientViews = () => {
             }>
 
                 <Route path="appointments" element={ <AppointmentList /> } />
+                <Route path="profile" element={ <Profile /> } />
                 <Route path="appointment/create" element={ <AppointmentForm /> } />
+                <Route path="appointment/:appointmentId/edit" element={ <AppointmentEdit />} />
             </Route>
         </Routes>
     )

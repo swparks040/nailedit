@@ -20,7 +20,8 @@ export const EmployeeDetails = () => {
     return <section className="employee">
     <header className="employee__header">{employee?.user?.fullName}</header> 
     <div>Email: {employee?.user?.email}</div>
-    <div>Rate: {employee.payRate}</div>
+    <div>Role: {employee.role}</div>
+    <div>Pay: {employee.payRate}</div>
     <div>Start Date: {employee.startDate}</div>
     <footer className="employee__footer">Has claimed {employee?.employeeAppointments?.length} appointments.</footer>
 </section>
