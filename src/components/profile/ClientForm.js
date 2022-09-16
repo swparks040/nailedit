@@ -19,7 +19,7 @@ export const ClientForm = () => {
             setTimeout(() => setFeedback(""), 3000);
         }
     }, [feedback])
-
+// Expand to include name and email address.
     useEffect(() => {
         fetch(`http://localhost:8088/clients?userId=${nailedItUserObject.id}`)
           .then((response) => response.json())

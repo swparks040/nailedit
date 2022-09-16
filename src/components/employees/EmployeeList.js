@@ -22,7 +22,7 @@ export const EmployeeList = () => {
                 id={user.id} 
                 fullName={user.fullName} 
                 email={user.email}
-                role={user?.employee?.role} 
+                role={user?.employees?.role} 
                 /> )
         }
     </article>

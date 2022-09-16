@@ -3,22 +3,35 @@
 1. Create AppointmentList function to be used/rendered in ApplicationViews.js*/
 
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { Appointment } from "./Appointment"
 
 export const AppointmentList = () => {
     const [appointments, setAppointments] = useState([])
+    const [employees, setEmployees] = useState([])
     //create another state so I can modify filteredAppointments 
     const [filteredAppointments, setFilteredAppointments] = useState([])
     const localNailedItUser = localStorage.getItem("nailedIt_user")
     const nailedItUserObject = JSON.parse(localNailedItUser)
     const navigate = useNavigate();
 
+    const pullAppointments = () => {
+        fetch(`http://localhost:8088/appointments?_embed=employeeAppointments`)
+        .then(response => response.json())
+        .then((appointmentArray) => {
+            setAppointments(appointmentArray)
+        })
+    }
+
     useEffect(
         () => {
-            fetch(`http://localhost:8088/appointments`)
+            
+            pullAppointments()
+
+            fetch(`http://localhost:8088/employees?_expand=user`)
             .then(response => response.json())
-            .then((appointmentArray) => {
-                setAppointments(appointmentArray)
+            .then((employeeArray) => {
+                setEmployees(employeeArray)
             })
 
         },
@@ -59,19 +72,11 @@ export const AppointmentList = () => {
         <article className="appointments">
             {
                 filteredAppointments.map(
-                    (appointment) => {
-                        return <section className="appointment">
-                            <header>
-                                <Link to={`/appointments/${appointment.id}/edit`}>Appointment {appointment.id}</Link>
-                            </header>
-                            <div>Colors: {appointment.nailColorId}</div>
-                            <div>Shapes: {appointment.nailShapeId}</div>
-                            <div>Effects: {appointment.nailEffectId}</div>
-                            <div>Directions: {appointment.directions}</div>
-                            <div>Date: {appointment.dateBooked}</div>
-                            <button onClick={() => navigate("/appointment/:appointmentId/edit")}>Edit Appointment</button>
-                        </section>
-                    }
+                    (appointment) => <Appointment 
+                    pullAppointments={pullAppointments}
+                    employees={employees}
+                    currentUser={nailedItUserObject} 
+                    appointmentObject={appointment} />
                 )
             }
         </article>

@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 export const AppointmentForm = () => {
-        
-//      Added the default properties to the initial state object.
-
+ 
+//  Added component state for nailColors, nailShapes, nailEffects.    
+//  Added the default properties to the initial state object.
+    const [nailColors, setNailColors] = useState([])
+    const [nailShapes, setNailShapes] = useState([])
+    const [nailEffects, setNailEffects] = useState([])
     const [appointment, update] = useState({
             userId: 0,
             nailColorId: 0,
@@ -13,6 +16,37 @@ export const AppointmentForm = () => {
             directions: "",
             dateBooked: ""
     })
+
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/nailColors`)
+            .then(response => response.json())
+            .then((nailColorArray) => {
+                setNailColors(nailColorArray)
+            })
+        },
+        []
+    )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/nailShapes`)
+            .then(response => response.json())
+            .then((nailShapeArray) => {
+                setNailShapes(nailShapeArray)
+            })
+        },
+        []
+    )
+    useEffect(
+        () => {
+            fetch(`http://localhost:8088/nailEffects`)
+            .then(response => response.json())
+            .then((nailEffectArray) => {
+                setNailEffects(nailEffectArray)
+            })
+        },
+        []
+    )
 
 //      implement "const navigate = useNavigate()"" hook so I can redirect the clients and employees to the appointment list.
 
@@ -52,50 +86,47 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
     return (
         <form className="appointmentForm">
             <h2 className="appointmentForm__title">New Appointment</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Nail Colors</label>
-                    <input type="checkbox"
-                        value={appointment.nailColorId}
-                        onChange={
-                            (evt) => {
-                                const copy = {...appointment}
-                                copy.appointment = evt.target.checked
-                                update(copy)
-                            }
-                            
-                        } />
-                </div>
+            <fieldset className="form-group">
+                    <label htmlFor="nailColor">Nail Colors</label>
+                    {
+                        nailColors.map(nailColor => {
+                            return <div className="form-group">
+                                <input 
+                                className="colorInput"
+                                onChange={
+                                    (evt) => {
+                                        const copy = {...appointment}
+                                        copy.appointment = evt.target.checked
+                                        update(copy)
+                    }} type="radio" value={nailColor.id}/> {nailColor.color}</div>})}        
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Nail Shapes</label>
-                    <input type="checkbox"
-                        value={appointment.nailShapeId}
-                        onChange={
-                            (evt) => {
-                                const copy = {...appointment}
-                                copy.appointment = evt.target.checked
-                                update(copy)
-                            }
-                            
-                        } />
-                </div>
+            <fieldset className="form-group">
+                    <label htmlFor="nailShape">Nail Shapes</label>
+                    {
+                        nailShapes.map(nailShape => {
+                            return <div className="form-group">
+                                <input 
+                                className="shapeInput"
+                                onChange={
+                                    (evt) => {
+                                        const copy = {...appointment}
+                                        copy.appointment = evt.target.checked
+                                        update(copy)
+                    }} type="radio" value={nailShape.id}/> {nailShape.shape}</div>})}        
             </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="name">Nail Effects</label>
-                    <input type="checkbox"
-                        value={appointment.nailEffectId}
-                        onChange={
-                            (evt) => {
-                                const copy = {...appointment}
-                                copy.appointment = evt.target.checked
-                                update(copy)
-                            }
-                            
-                        } />
-                </div>
+            <fieldset className="form-group">
+                    <label htmlFor="nailEffect">Nail Effects</label>
+                    {
+                        nailEffects.map(nailEffect => {
+                            return <div className="form-group">
+                                <input 
+                                className="effectInput"
+                                onChange={
+                                    (evt) => {
+                                        const copy = {...appointment}
+                                        copy.appointment = evt.target.checked
+                                        update(copy)
+                    }} type="radio" value={nailEffect.id}/> {nailEffect.effect}</div>})}        
             </fieldset>
             <fieldset>
                 <div className="form-group">
@@ -117,14 +148,14 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                 <label htmlFor="dates">Date:</label> 
+                 <label htmlFor="dates">Choose Appointment Time:</label> 
                  <input                   
-                    type="date"
+                    type="datetime-local"
                     className="form-control"
                     required pattern="\d{4}-\d{2}-\d{2}"
                     value={appointment.dateBooked}
-                    min="2022-01-21"
-                    max="2030-01-01"
+                    min="2022-01-21T00:00"
+                    max="2030-01-01T00:00"
                     onChange={
                         (evt) => {
                             const copy = {...appointment}

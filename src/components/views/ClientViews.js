@@ -19,7 +19,7 @@ export const ClientViews = () => {
                 <Route path="appointments" element={ <AppointmentList /> } />
                 <Route path="profile" element={ <Profile /> } />
                 <Route path="appointment/create" element={ <AppointmentForm /> } />
-                <Route path="appointment/:appointmentId/edit" element={ <AppointmentEdit />} />
+                <Route path="appointments/:appointmentId/edit" element={ <AppointmentEdit />} />
             </Route>
         </Routes>
     )
