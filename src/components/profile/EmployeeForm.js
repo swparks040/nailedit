@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export const EmployeeForm = () => {
+  const {employeeId} = useParams()
 // Create initial state for profile
   const [profile, updateProfile] = useState({
     userId: 0,
@@ -9,8 +11,8 @@ export const EmployeeForm = () => {
     startDate: "",
   });
 
-  const localNailedItUser = localStorage.getItem("nailedIt_user");
-  const nailedItUserObject = JSON.parse(localNailedItUser);
+  // const localNailedItUser = localStorage.getItem("nailedIt_user");
+  // const nailedItUserObject = JSON.parse(localNailedItUser);
   const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export const EmployeeForm = () => {
 
 //   This fetch pulls employee profile information from the API for the most up to date information for employees and updates the state
   useEffect(() => {
-    fetch(`http://localhost:8088/employees?userId=${nailedItUserObject.id}`)
+    fetch(`http://localhost:8088/employees?userId=${employeeId}`)
       .then((response) => response.json())
       .then((data) => {
         const employeeObject = data[0];

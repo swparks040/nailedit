@@ -14,7 +14,8 @@ export const AppointmentForm = () => {
             nailShapeId: 0,
             nailEffectId: 0,
             directions: "",
-            dateBooked: ""
+            dateBooked: "",
+            dateCompleted: ""
     })
 
     useEffect(
@@ -66,7 +67,8 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                nailShapeId: appointment.nailShapeId,
                nailEffectId: appointment.nailEffectId,
                directions: appointment.directions,
-               dateBooked: appointment.dateBooked
+               dateBooked: appointment.dateBooked,
+               dateCompleted: appointment.dateCompleted
            }
 
 //      post to API with fetch POST, stringify with .stringify(appointmentObject) in the body, then navigate to appointments.
@@ -93,10 +95,11 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                             return <div className="form-group">
                                 <input 
                                 className="colorInput"
+                                name="nailColor"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailColorId = nailColor.id
                                         update(copy)
                     }} type="radio" value={nailColor.id}/> {nailColor.color}</div>})}        
             </fieldset>
@@ -107,10 +110,11 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                             return <div className="form-group">
                                 <input 
                                 className="shapeInput"
+                                name="nailShape"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailShapeId = nailShape.id
                                         update(copy)
                     }} type="radio" value={nailShape.id}/> {nailShape.shape}</div>})}        
             </fieldset>
@@ -121,10 +125,11 @@ const nailedItUserObject = JSON.parse(localNailedItUser)
                             return <div className="form-group">
                                 <input 
                                 className="effectInput"
+                                name="nailEffect"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailEffectId = nailEffect.id
                                         update(copy)
                     }} type="radio" value={nailEffect.id}/> {nailEffect.effect}</div>})}        
             </fieldset>

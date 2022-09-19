@@ -23,14 +23,14 @@ export const EmployeeViews = () => {
             <Route path="/" element={
                 <>
                     <h1>Nailed It! by Olivia</h1>
-                    <div>Yo, get ya nails right...</div>
+                    <div>Current Workflow</div>
 
                     <Outlet />
                 </>
             }>
 
                 <Route path="appointments" element={ <AppointmentList /> } />
-                <Route path="profile" element={ <Profile /> } />
+                <Route path="profile/:employeeId" element={ <Profile /> } />
                 <Route path="clients" element={ <ClientList />} />
                 <Route path="clients/:clientId" element={ <ClientDetails /> } />
                 <Route path="employees" element={ <EmployeeList />} />

@@ -10,7 +10,7 @@ export const ClientViews = () => {
             <Route path="/" element={
                 <>
                     <h1>Nailed It! by Olivia</h1>
-                    <div>Yo, get ya nails right...</div>
+                    <div>Create an appointment, edit a current appointment, or delete your appointment!</div>
 
                     <Outlet />
                 </>

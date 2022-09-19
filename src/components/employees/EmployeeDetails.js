@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+
 
 export const EmployeeDetails = () => {
     const {employeeId} = useParams()
     const [employee, updateEmployee] = useState([])
+    const navigate = useNavigate();
 
     useEffect(
         () => {
@@ -24,5 +26,7 @@ export const EmployeeDetails = () => {
     <div>Pay: {employee.payRate}</div>
     <div>Start Date: {employee.startDate}</div>
     <footer className="employee__footer">Has claimed {employee?.employeeAppointments?.length} appointments.</footer>
+    <button onClick={() => navigate(`/profile/${employeeId}`)}>Update Employee Details
+            </button>
 </section>
 }

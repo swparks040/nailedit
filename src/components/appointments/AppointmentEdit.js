@@ -12,7 +12,8 @@ export const AppointmentEdit = () => {
             nailShapeId: 0,
             nailEffectId: 0,
             directions: "",
-            dateBooked: ""
+            dateBooked: "",
+            dateCompleted: ""
     })
 
     useEffect(
@@ -82,12 +83,13 @@ export const AppointmentEdit = () => {
                             return <div className="form-group">
                                 <input 
                                 className="colorInput"
+                                name="nailColor"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailColorId = nailColor.id
                                         updateAppointment(copy)
-                    }} type="checkbox" value={nailColor.id}/> {nailColor.color}</div>})}        
+                    }} type="radio" value={nailColor.id}/> {nailColor.color}</div>})}        
             </fieldset>
             <fieldset className="form-group">
                     <label htmlFor="nailShape">Nail Shapes</label>
@@ -96,12 +98,13 @@ export const AppointmentEdit = () => {
                             return <div className="form-group">
                                 <input 
                                 className="shapeInput"
+                                name="nailShape"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailShapeId = nailShape.id
                                         updateAppointment(copy)
-                    }} type="checkbox" value={nailShape.id}/> {nailShape.shape}</div>})}        
+                    }} type="radio" value={nailShape.id}/> {nailShape.shape}</div>})}        
             </fieldset>
             <fieldset className="form-group">
                     <label htmlFor="nailEffect">Nail Effects</label>
@@ -110,12 +113,13 @@ export const AppointmentEdit = () => {
                             return <div className="form-group">
                                 <input 
                                 className="effectInput"
+                                name="nailEffect"
                                 onChange={
-                                    (evt) => {
+                                    () => {
                                         const copy = {...appointment}
-                                        copy.appointment = evt.target.checked
+                                        copy.nailEffectId = nailEffect.id
                                         updateAppointment(copy)
-                    }} type="checkbox" value={nailEffect.id}/> {nailEffect.effect}</div>})}        
+                    }} type="radio" value={nailEffect.id}/> {nailEffect.effect}</div>})}        
             </fieldset>
             <fieldset>
                 <div className="form-group">

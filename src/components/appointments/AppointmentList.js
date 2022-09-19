@@ -16,7 +16,7 @@ export const AppointmentList = () => {
     const navigate = useNavigate();
 
     const pullAppointments = () => {
-        fetch(`http://localhost:8088/appointments?_embed=employeeAppointments`)
+        fetch(`http://localhost:8088/appointments?_embed=employeeAppointments&_expand=user&_expand=nailColor&_expand=nailShape&_expand=nailEffect`)
         .then(response => response.json())
         .then((appointmentArray) => {
             setAppointments(appointmentArray)
