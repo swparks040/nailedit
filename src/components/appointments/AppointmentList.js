@@ -5,7 +5,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Appointment } from "./Appointment"
-
+import "./Appointments.css"
 export const AppointmentList = () => {
     const [appointments, setAppointments] = useState([])
     const [employees, setEmployees] = useState([])
@@ -56,9 +56,7 @@ export const AppointmentList = () => {
     return <>
         {
             nailedItUserObject.staff
-                ? <>
-                
-                </>
+                ? <></>
                 : <><button onClick={() => navigate("/appointment/create")}>Make Appointment</button></>
                 
         }

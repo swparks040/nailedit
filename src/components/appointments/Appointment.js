@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import "./Appointments.css"
 
 export const Appointment = ({appointmentObject, currentUser, employees, pullAppointments}) => {
 
@@ -47,7 +48,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
         if (nailedItUserObject.staff) {
             return appointmentObject.employeeAppointments.length 
             ? `Currently being worked on by ${assignedEmployee !== null ? assignedEmployee?.user?.fullName : ""}`
-            : <button
+            : <button className="appointment__claim"
             onClick={() => {
                 fetch(`http://localhost:8088/employeeAppointments`, {
                     method: "POST",
@@ -74,7 +75,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
     const canClose = () => {
         if (nailedItUserObject.staff) {
             if (appointmentObject.dateCompleted === "") {
-                return <button onClick={closeAppointment}className="appointment__finish">Complete</button>
+                return <button onClick={closeAppointment}className="appointment__complete">Complete</button>
             }
             else if (appointmentObject.dateBooked === "") {
                 return ""
@@ -112,22 +113,24 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
     
   
         return <section className="appointment" key={`appointment--${appointmentObject.id}`}>
-        <header>
+        <header className="appointment__header">
             {
                 currentUser.staff
                      ? `${appointmentObject.user.fullName}'s Appointment`
                      : `${appointmentObject.user.fullName}'s Appointment`
             }
         </header>
-        <div>Color: {appointmentObject.nailColor.color}</div>
-        <div>Shape: {appointmentObject.nailShape.shape}</div>
-        <div>Effect: {appointmentObject.nailEffect.effect}</div>
-        <div>Directions: {appointmentObject.directions}</div>
-        <div>Date Booked: {appointmentObject.dateBooked}</div>
-        <div>Date Completed: {dateCompleted()}</div>
+        <div className="appointment__details">
+            <p>Color: {appointmentObject.nailColor.color}</p>
+            <p>Shape: {appointmentObject.nailShape.shape}</p>
+            <p>Effect: {appointmentObject.nailEffect.effect}</p>
+            <p>Directions: {appointmentObject.directions}</p>
+            <p>Date Booked: {appointmentObject.dateBooked}</p>
+            <p>Date Completed: {dateCompleted()}</p>
+        </div>
         <footer>
         </footer>
-        <button onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
+        <button className="appointment__edit"onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
             {
                 canClose()
             }

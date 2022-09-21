@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-
+import "./Employees.css"
 
 export const EmployeeDetails = () => {
     const {employeeId} = useParams()
@@ -21,12 +21,12 @@ export const EmployeeDetails = () => {
 
     return <section className="employee">
     <header className="employee__header">{employee?.user?.fullName}</header> 
-    <div>Email: {employee?.user?.email}</div>
-    <div>Role: {employee.role}</div>
-    <div>Pay: {employee.payRate}</div>
-    <div>Start Date: {employee.startDate}</div>
+    <p>Email: {employee?.user?.email}</p>
+    <p>Role: {employee.role}</p>
+    <p>Pay: {employee.payRate}</p>
+    <p>Start Date: {employee.startDate}</p>
     <footer className="employee__footer">Has claimed {employee?.employeeAppointments?.length} appointments.</footer>
-    <button onClick={() => navigate(`/profile/${employeeId}`)}>Update Employee Details
+    <button className="employee__update"onClick={() => navigate(`/profile/${employeeId}`)}>Update Employee Details
             </button>
 </section>
 }
