@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { Client } from "./Client"
 import "./Clients.css"
 
 export const ClientList = () => {
     const [clients, setClients] = useState([])
-
+    const navigate = useNavigate()
     useEffect(
         () => {
             fetch(`http://localhost:8088/users?isStaff=false`)
@@ -16,7 +17,8 @@ export const ClientList = () => {
         []
     )
 
-    return <article className="clients">
+    return <><article className="clients">
+        <span className="clientList__details">Select hyperlink for details...</span>
         {
             clients.map(client => <Client key={`client--${client.id}`}
                 id={client.id} 
@@ -26,4 +28,6 @@ export const ClientList = () => {
                 phone={client?.clients?.phone} /> )
         }
     </article>
+    <button className="back__button"onClick={() => navigate(`/`)}>Back</button>
+    </>
 }

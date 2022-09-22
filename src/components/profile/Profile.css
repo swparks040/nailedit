@@ -1,19 +1,4 @@
-.employee__header {
-    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-style: italic;
-    font-size: 1.5rem;
-    line-height: 3rem
-}
-.employee__footer {
-    font-style: italic
-}
-
-p {
-    font-style: italic
-}
-
-.employeeUpdate__button,
-.back__button {
+.saveProfile__button  {
   align-items: center;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -42,22 +27,18 @@ p {
   width: auto;
 }
 
-.employeeUpdate__button:hover,
-.employeeUpdate__button:focus,
-.back__button:hover,
-.back__button:focus {
+.saveProfile__button:hover,
+.saveProfile__button:focus {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   color: rgba(0, 0, 0, 0.65);
 }
 
-.employeeUpdate__button:hover,
-.back__button:hover {
+.saveProfile__button:hover {
   transform: translateY(-1px);
 }
 
-.employeeUpdate__button:active,
-.back__button:active {
+.saveProfile__button:active  {
   background-color: #F0F0F1;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;

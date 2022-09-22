@@ -9,6 +9,6 @@ export const Employee = ({id, fullName, email}) => {
             </p>
             <p>Email: {email}</p>
         </section>
-        <div></div>
+        
           </>
 }

@@ -15,14 +15,24 @@
     margin-right: 2rem;
 }
 
-.navbar__link {
+.navbar__link:link {
+    color: black;
     display: block;
     font-size: 1.0rem;
     padding: 2rem;
-    transition: all 0.5s ease-out;
+    transition: all 0.15s ease-out;
 }
 
 .navbar__link:hover {
     background: lightblue;
   }
+.navbar__link:active {
+    color: goldenrod;
+    background: red;
+  }
+.navbar__link:visited {
+    color: purple;
+    
+  }
+
 

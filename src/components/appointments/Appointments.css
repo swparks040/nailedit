@@ -1,7 +1,10 @@
-.appointment__edit,
-.appointment__delete,
-.appointment__complete,
-.appointment__claim  {
+.appointmentEdit__button,
+.appointmentDelete__button,
+.appointmentComplete__button,
+.appointmentClaim__button,
+.makeAppointment__button,
+.updateAppointment__button,
+.bookAppointment__button  {
   align-items: center;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -30,30 +33,41 @@
   width: auto;
 }
 
-.appointment__edit:hover,
-.appointment__edit:focus,
-.appointment__delete:hover,
-.appointment__delete:focus,
-.appointment__complete:hover,
-.appointment__complete:focus,
-.appointment__claim:hover,
-.appointment__claim:focus   {
+.appointmentEdit__button:hover,
+.appointmentEdit__button:focus,
+.appointmentDelete__button:hover,
+.appointmentDelete__button:focus,
+.appointmentComplete__button:hover,
+.appointmentComplete__button:focus,
+.appointmentClaim__button:hover,
+.appointmentClaim__button:focus,
+.makeAppointment__button:hover ,
+.makeAppointment__button:focus,
+.updateAppointment__button:hover,
+.updateAppointment__button:focus,
+.bookAppointment__button:hover ,
+.bookAppointment__button:focus    {
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   color: rgba(0, 0, 0, 0.65);
 }
 
-.appointment__edit:hover,
-.appointment__delete:hover,
-.appointment__complete:hover,
-.appointment__claim:hover  {
+.appointmentEdit__button:hover,
+.appointmentDelete__button:hover,
+.appointmentComplete__button:hover,
+.appointmentClaim__button:hover,
+.updateAppointment__button:hover,
+.bookAppointment__button:hover  {
   transform: translateY(-1px);
 }
 
-.appointment__edit:active,
-.appointment__delete:active,
-.appointment__complete:active,
-.appointment__claim:active {
+.appointmentEdit__button:active,
+.appointmentDelete__button:active,
+.appointmentComplete__button:active,
+.appointmentClaim__button:active,
+.makeAppointment__button:active,
+.updateAppointment__button:active,
+.bookAppointment__button:active  {
   background-color: #F0F0F1;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
@@ -66,6 +80,9 @@
     font-style: italic;
     font-size: 1.5rem;
     line-height: 3rem
+}
+.appointmentClaim__tag {
+    font-style: italic
 }
 
 h2 {

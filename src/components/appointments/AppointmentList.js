@@ -57,27 +57,22 @@ export const AppointmentList = () => {
         {
             nailedItUserObject.staff
                 ? <></>
-                : <><button onClick={() => navigate("/appointment/create")}>Make Appointment</button></>
+                : <><button className="makeAppointment__button"onClick={() => navigate("/appointment/create")}>Make Appointment</button></>
                 
         }
-    
-
-
-
-    
         <h2>List of Appointments</h2>
 
-        <article className="appointments">
-            {
-                filteredAppointments.map(
-                    (appointment) => <Appointment 
-                    pullAppointments={pullAppointments}
-                    employees={employees}
-                    currentUser={nailedItUserObject} 
-                    appointmentObject={appointment} />
-                )
-            }
-        </article>
+            <article className="appointments">
+                {
+                    filteredAppointments.map(
+                        (appointment) => <Appointment 
+                        pullAppointments={pullAppointments}
+                        employees={employees}
+                        currentUser={nailedItUserObject} 
+                        appointmentObject={appointment} />
+                    )
+                }
+            </article>
+            <button className="back__button"onClick={() => navigate(`/`)}>Back</button>
 </>
-
 }

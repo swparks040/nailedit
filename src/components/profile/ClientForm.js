@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Profile.css"
 
 
 export const ClientForm = () => {
@@ -92,7 +93,7 @@ export const ClientForm = () => {
           </fieldset>
           <button
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-            className="btn btn-primary"
+            className="saveProfile__button"
           >
             Save Profile
           </button>

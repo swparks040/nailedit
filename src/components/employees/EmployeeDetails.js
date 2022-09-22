@@ -19,14 +19,15 @@ export const EmployeeDetails = () => {
         [employeeId]
     )
 
-    return <section className="employee">
-    <header className="employee__header">{employee?.user?.fullName}</header> 
-    <p>Email: {employee?.user?.email}</p>
-    <p>Role: {employee.role}</p>
-    <p>Pay: {employee.payRate}</p>
-    <p>Start Date: {employee.startDate}</p>
-    <footer className="employee__footer">Has claimed {employee?.employeeAppointments?.length} appointments.</footer>
-    <button className="employee__update"onClick={() => navigate(`/profile/${employeeId}`)}>Update Employee Details
-            </button>
-</section>
+    return <>
+    <section className="employee">
+        <header className="employee__header">{employee?.user?.fullName}</header> 
+            <p>Email: {employee?.user?.email}</p>
+            <p>Role: {employee.role}</p>
+            <p>Pay: {employee.payRate}</p>
+            <p>Start Date: {employee.startDate}</p>
+        <footer className="employee__footer">Has claimed {employee?.employeeAppointments?.length} appointments.</footer>
+    </section>
+        <button className="employeeUpdate__button"onClick={() => navigate(`/profile/${employeeId}`)}>Update</button>
+        <button className="back__button"onClick={() => navigate(`/employees`)}>Back</button></>
 }

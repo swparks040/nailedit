@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
+import "./Clients.css"
 
 export const Client = ({id, fullName, email }) => {
     
     return <section className="client">
-        <div>
-            <Link to={`/clients/${id}`}>Name: {fullName}</Link>
-        </div>
-        <div>Email: {email}</div>
+        <p>
+        Name: <Link to={`/clients/${id}`}> {fullName}</Link>
+        </p>
+        <p>Email: {email}</p>
         
     </section>
 }

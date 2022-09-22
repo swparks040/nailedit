@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./Profile.css"
 
 export const EmployeeForm = () => {
   const {employeeId} = useParams()
@@ -113,7 +114,7 @@ export const EmployeeForm = () => {
         </fieldset>
         <button
           onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-          className="btn btn-primary"
+          className="saveProfile__button"
         >
           Save Employee Information
         </button>

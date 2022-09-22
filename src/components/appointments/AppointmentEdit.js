@@ -160,7 +160,7 @@ export const AppointmentEdit = () => {
             </fieldset>
             <button 
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}    
-                className="btn btn-primary">
+                className="updateAppointment__button">
                     Update Appointment Details
             </button>
         </form>

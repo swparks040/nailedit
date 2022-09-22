@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import "./Clients.css"
 
 export const ClientDetails = () => {
     const {clientId} = useParams()
     const [client, updateClient] = useState({})
-
+    const navigate = useNavigate();
     useEffect(
         () => {
             fetch(`http://localhost:8088/clients?_expand=user&userId=${clientId}`)
@@ -17,10 +18,11 @@ export const ClientDetails = () => {
         [clientId]
     )
 
-    return <section className="client">
+    return <><section className="client">
     <header className="client__header">{client?.user?.fullName}</header> 
-    <div>Email: {client?.user?.email}</div>
-    <div>Address: {client.address}</div>
-    <div>Phone Number: {client.phone}</div>
+    <p>Email: {client?.user?.email}</p>
+    <p>Address: {client.address}</p>
+    <p>Phone Number: {client.phone}</p>
 </section>
+<button className="appointmentEdit__button"onClick={() => navigate(`/clients`)}>Back</button></>
 }

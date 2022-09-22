@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "./Appointments.css"
 
+
 export const Appointment = ({appointmentObject, currentUser, employees, pullAppointments}) => {
 
     let assignedEmployee = null
@@ -30,7 +31,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
                 .then(() => {
                     pullAppointments()
                 })
-            }}className="appointment__delete">Delete</button>
+            }}className="appointmentDelete__button">Delete</button>
         } 
         else {
             return <button onClick={() => {
@@ -40,15 +41,15 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
                 .then(() => {
                     pullAppointments()
                 })
-            }}className="appointment__delete">Delete</button>
+            }}className="appointmentDelete__button">Delete</button>
         }
     }
 
     const canClaim = () => {
         if (nailedItUserObject.staff) {
             return appointmentObject.employeeAppointments.length 
-            ? `Currently being worked on by ${assignedEmployee !== null ? assignedEmployee?.user?.fullName : ""}`
-            : <button className="appointment__claim"
+            ? <span className="appointmentClaim__tag">Currently with {assignedEmployee !== null ? assignedEmployee?.user?.fullName : ""}</span>
+            : <button className="appointmentClaim__button"
             onClick={() => {
                 fetch(`http://localhost:8088/employeeAppointments`, {
                     method: "POST",
@@ -75,7 +76,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
     const canClose = () => {
         if (nailedItUserObject.staff) {
             if (appointmentObject.dateCompleted === "") {
-                return <button onClick={closeAppointment}className="appointment__complete">Complete</button>
+                return <button onClick={closeAppointment}className="appointmentComplete__button">Complete</button>
             }
             else if (appointmentObject.dateBooked === "") {
                 return ""
@@ -112,7 +113,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
     const navigate = useNavigate();
     
   
-        return <section className="appointment" key={`appointment--${appointmentObject.id}`}>
+        return <><section className="appointment" key={`appointment--${appointmentObject.id}`}>
         <header className="appointment__header">
             {
                 currentUser.staff
@@ -130,7 +131,7 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
         </div>
         <footer>
         </footer>
-        <button className="appointment__edit"onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
+        <button className="appointmentEdit__button"onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
             {
                 canClose()
             }
@@ -141,4 +142,5 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
                 canClaim() 
             }
     </section>
+    </>
 }
