@@ -29,9 +29,7 @@ export const Login = () => {
     }
 
     return (
-        <main className="container--login">
-            
-         <img src="images/oliviaNailBar.jpg" alt="O" width="500" height="600"/>   
+        <main className="container--login">  
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     

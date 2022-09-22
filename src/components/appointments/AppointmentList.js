@@ -60,7 +60,7 @@ export const AppointmentList = () => {
                 : <><button className="makeAppointment__button"onClick={() => navigate("/appointment/create")}>Make Appointment</button></>
                 
         }
-        <h2>List of Appointments</h2>
+        <h2 className="appointmentList">List of Appointments</h2>
 
             <article className="appointments">
                 {

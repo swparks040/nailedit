@@ -16,14 +16,19 @@ import { EmployeeDetails } from "../employees/EmployeeDetails"
 import { Profile } from "../profile/Profile"
 import { AppointmentEdit } from "../appointments/AppointmentEdit"
 import { AppointmentForm } from "../appointments/AppointmentForm"
+import oliviaBanner from "../images/oliviaBanner.jpg"
 
 export const EmployeeViews = () => {
 	return (
         <Routes>
             <Route path="/" element={
                 <>
-                    <h1>Nailed It! by Olivia</h1>
-                    <div>Current Workflow</div>
+                    
+                    <div>
+                        <img src={oliviaBanner} alt="banner_image" className="banner_img" style={{width: '100rem', height: '40rem'}}/>
+                        
+                    </div>
+                    
 
                     <Outlet />
                 </>
