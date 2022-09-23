@@ -1,6 +1,13 @@
 .container--login {
+    font-family: 'Nunito', sans-serif;
     background: rgb(54, 50, 50)
 }
+.link--registerText {
+    color: #F0F0F1;
+    font-family: 'Nunito', sans-serif;
+    background: rgb(54, 50, 50)
+}
+
 .login__button  {
     align-items: center;
     background-color: #FFFFFF;

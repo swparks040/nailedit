@@ -88,6 +88,16 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
         return ""
     }
     }
+
+    const canEdit = () => {
+        if (appointmentObject.dateCompleted === dateCompleted()) {
+            return ""
+        }
+        else {
+            return <button className="appointmentEdit__button"onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
+        }
+    }
+    
     const closeAppointment = () => {
       const copy = {
             userId: appointmentObject.userId,
@@ -131,7 +141,9 @@ export const Appointment = ({appointmentObject, currentUser, employees, pullAppo
         </div>
         <footer>
         </footer>
-        <button className="appointmentEdit__button"onClick={() => navigate(`/appointments/${appointmentObject.id}/edit`)}>Edit</button>
+            {
+                canEdit()
+            }
             {
                 canClose()
             }
