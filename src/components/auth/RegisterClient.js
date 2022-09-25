@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Profile.css"
+//import "./Profile.css"
 
 
-export const ClientForm = () => {
-    const [profile, updateProfile] = useState({
+export const RegisterClient = () => {
+    const [profile, createProfile] = useState({
         address: "",
         phoneNumber: "",
         userId: 0,
       });
 
-
-    
       const localNailedItUser = localStorage.getItem("nailedIt_user");
       const nailedItUserObject = JSON.parse(localNailedItUser);
       const [feedback, setFeedback] = useState("")
@@ -29,8 +27,8 @@ export const ClientForm = () => {
         fetch(`http://localhost:8088/clients?userId=${nailedItUserObject.id}`)
           .then((response) => response.json())
           .then((data) => {
-            const clientObject = data[0];
-            updateProfile(clientObject);
+            const clientObject = data;
+            createProfile(clientObject);
             
           });
       }, []);
@@ -47,7 +45,7 @@ export const ClientForm = () => {
           })
             .then((response) => response.json())
             .then(() => {
-              setFeedback("Client profile successfully saved")
+              setFeedback("Client profile successfully created.")
           })
         };
 
@@ -56,7 +54,7 @@ export const ClientForm = () => {
         {feedback}
         </div>
         <form className="profile">
-          <h2 className="profile__title">Update Client Profile</h2>
+          <h2 className="profile__title">Create Client Profile</h2>
           <fieldset>
             <div className="form-group">
               <label htmlFor="address">Address:</label>
@@ -70,7 +68,7 @@ export const ClientForm = () => {
                 onChange={(evt) => {
                   const copy = { ...profile };
                   copy.address = evt.target.value;
-                  updateProfile(copy);
+                  createProfile(copy);
                 }}
               />
             </div>
@@ -88,16 +86,16 @@ export const ClientForm = () => {
                 onChange={(evt) => {
                   const copy = { ...profile };
                   copy.phone = evt.target.value;
-                  updateProfile(copy);
+                  createProfile(copy);
                 }}
               />
             </div>
           </fieldset>
           <button
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-            className="saveProfile__button"
+            className="createProfile__button"
           >
-            Save Profile
+            Create Profile
           </button>
           <button className="back__button"onClick={() => navigate(`/appointments`)}>Back</button>
         </form>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./Profile.css"
 
 export const EmployeeForm = () => {
+  const navigate = useNavigate()
   const {employeeId} = useParams()
 // Create initial state for profile
   const [profile, updateProfile] = useState({
@@ -118,6 +119,7 @@ export const EmployeeForm = () => {
         >
           Save Employee Information
         </button>
+        <button className="back__button"onClick={() => navigate(`/employees`)}>Back</button>
       </form>
     </>
   );
