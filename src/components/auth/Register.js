@@ -10,30 +10,6 @@ export const Register = (props) => {
     })
     let navigate = useNavigate()
 
-//=============================================
-/*
-const followOnRegistration = () => {
-        
-        return fetch(`http://localhost:8088/users?email=${client.email}`)
-            .then(res => res.json())
-            .then(response => {
-                if (response.length > 0) {
-                    // Duplicate email. No good.
-                    window.alert("Account with that email address already exists")
-                }
-                else {
-                    // Good email, create user.
-                    registerNewUser()
-                }
-            })
-    }
-
-
-*/
-
-
-
-
     const registerNewUser = () => {
         return fetch("http://localhost:8088/users", {
             method: "POST",
@@ -49,20 +25,14 @@ const followOnRegistration = () => {
                         id: createdUser.id,
                         staff: createdUser.isStaff
                     }))
-
+                    navigate("/")
                 }
 //then navigate to the appropriate client/employee creation form. create these forms within the auth folder because "Profiles" and "ProfileViews" do not exist yet..
             })
-            .then(() => {
-                if (client.isStaff === true) {
-                    navigate ("/")
-                }
-                else {
-                    navigate ("/auth")
-                }
+            
             }
-            )
-    }
+            
+    
 
     const handleRegister = (e) => {
         e.preventDefault()
